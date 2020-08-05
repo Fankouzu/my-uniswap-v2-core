@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+const { compile, deployContract, getTxHash, callContract, ether } = require('./ThkContract.js');
+
+var arguments = process.argv.splice(2);
+const contractName = arguments.shift();
+deploy = () => {
+  deployContract(contractName, arguments).then((Instance) => {
+    console.log("address()", Instance.address)
+  })
+}
+
+main = async () => {
+  deploy();
+}
+
+main();
+/*
+address factory: 0x9cc13743e4dd9530954998e6cd1b909f56f93e16
+*/

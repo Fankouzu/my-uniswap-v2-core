@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+const utils = require('ethereumjs-util');
+const { compile, deploy, getTxHash, callContract, ether, recoverData, permit, preSign } = require('./ThkContract.js');
+// permit({
+//     name: 'myMethod',
+//     type: 'function',
+//     inputs: [{
+//         type: 'uint256',
+//         name: 'myNumber'
+//     },{
+//         type: 'string',
+//         name: 'myString'
+//     }]
+// }, ['2345675643', 'Hello!%']).then((res)=>{
+
+//     console.log(res)
+//     const v = 28;
+//     const r =   '0xDA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0D'
+//     const s =   '0xDA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0D'
+//     const recover = recoverData(res.message,v,r,s);
+//     console.log(recover.toString('hex'))
+// })
+
+deployContract = () => {
+    // deploy('Create2Eth', []).then((contracts) => {
+    //     console.log('transactionHash: ', contracts.transactionHash)
+    //     //   getTxHash(contracts.transactionHash).then((Address) => {
+    //     //     console.log('contract Address: ', Address)
+
+    //     //   })
+    // })
+    preSign('Create2Eth', []).then((result) => {
+        // const v = 27;
+        // const r = '0xDA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0D'
+        // const s = '0xDA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0DA0D'
+        // const recover = recoverData(result.sign_byte, v, r, s);
+        // result.transactionDict['sig'] = "0x" + r.substring(2) + s.substring(2) + v.toString(16)
+        // result.transactionDict['pub'] = recover.public;
+        // result.transactionDict['from'] = recover.address;
+        
+        console.log(result.transactionDict)
+        //   getTxHash(contracts.transactionHash).then((Address) => {
+        //     console.log('contract Address: ', Address)
+
+        //   })
+    })
+}
+
+main = async () => {
+    deployContract();
+}
+
+main();
