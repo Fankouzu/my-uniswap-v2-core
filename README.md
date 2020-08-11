@@ -1,6 +1,6 @@
 # Uniswap V2 中文注释,中文文档
 
-- [白皮书翻译](./WhitepaperCN.md)
+- [白皮书翻译](./WhitepaperCN.pdf)
 
 - [工厂合约](./UniswapV2Factory.md)
 
