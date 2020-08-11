@@ -8,6 +8,41 @@
 
 - [路由合约](./UniswapV2Router02.md)
 
+# 合约结构
+
+```mermaid
+graph TD
+A(UniswapV2ERC20)
+B(UniswapV2Pair)
+C(UniswapV2Factory)
+A-->|继承|B
+B-->|引用|C
+```
+
+# 创建流动性
+
+```mermaid
+graph TD
+A(UniswapV2Router)
+B(UniswapV2Pair)
+C(UniswapV2Factory)
+D(项目方)
+D-->|创建流动性|A
+A-->|调用|C
+C-->|布署|B
+```
+
+# 交易
+
+```mermaid
+graph TD
+A(UniswapV2Router)
+B(UniswapV2Pair)
+D(用户)
+D-->|交易|A
+A-->|调用|B
+```
+
 # uniswap 运行逻辑
 
 1. uniswap核心合约分为3个合约,工厂合约,配对合约,ERC20合约

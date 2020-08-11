@@ -1,6 +1,5 @@
-# Uniswap V2 核心
+# Uniswap V2 核心白皮书
 
-## 2020年3月
 - 翻译: [崔棉大师](https://github.com/Fankouzu)
 
 ## 摘要
@@ -233,7 +232,7 @@ Uniswap v1是一个例外。由于每对Uniswap v1对都将ETH作为一项资产
 ## 参考资料
 
 [1]Hayden Adams. 2018.https://hackmd.io/@477aQ9OrQTCbVR3fq1Qzxg/HJ9jLsfTz?type=view.
-[2]Guillermo Angeris et al. An analysis of Uniswap markets. 2019. arXiv:[[1911.03380 q-fin.TR]](https://arxiv.org/abs/1911.03380).
+[2]Guillermo Angeris et al. An analysis of Uniswap markets. 2019. arXiv:[1911.03380 q-fin. TR] https://arxiv.org/abs/1911.03380.
 [3]samczsun.Taking undercollateralized loans for fun and for profit. Sept.2019.https://samczsun.com/taking-undercollateralized-loans-for-fun-and-for-profit.
 [4]Fabian Vogelsteller and Vitalik Buterin. Nov. 2015.https://eips.ethereum.org/EIPS/eip-20.
 [5]Jordi Baylina Jacques Dafflon and Thomas Shababi.EIP 777: ERC777 Token Standard.Nov. 2017.https://eips.ethereum.org/EIPS/eip-777.
