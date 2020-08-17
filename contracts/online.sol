@@ -820,15 +820,15 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     }
 
     /**
-     * @dev 添加ETH流动性方法
+     * @dev 添加TKM流动性方法
      * @param token token地址
      * @param amountTokenDesired Token期望数量
      * @param amountTokenMin Token最小数量
-     * @param amountETHMin ETH最小数量
+     * @param amountTKMMin TKM最小数量
      * @param to to地址
      * @param deadline 最后期限
      * @return amountToken   Token数量
-     * @return amountETH   ETH数量
+     * @return amountTKM   TKM数量
      * @return liquidity   流动性数量
      */
     function addLiquidityETH(
@@ -848,7 +848,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
             uint256 liquidity
         )
     {
-        //获取Token数量,ETH数量
+        //获取Token数量,TKM数量
         (amountToken, amountETH) = _addLiquidity(
             token,
             WETH,
@@ -857,17 +857,17 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
             amountTokenMin,
             amountETHMin
         );
-        //根据Token,WETH地址,获取`pair合约`地址
+        //根据Token,WTKM地址,获取`pair合约`地址
         address pair = UniswapV2Library.pairFor(factory, token, WETH);
         //将`Token数量`的token从msg.sender账户中安全发送到`pair合约`地址
         TransferHelper.safeTransferFrom(token, msg.sender, pair, amountToken);
-        //向`WETH合约`存款`ETH数量`的主币
+        //向`WTKM合约`存款`TKM数量`的主币
         IWETH(WETH).deposit.value(amountETH)();
-        //将`ETH数量`的`WETH`token发送到`pair合约`地址
+        //将`TKM数量`的`WTKM`token发送到`pair合约`地址
         assert(IWETH(WETH).transfer(pair, amountETH));
         //流动性数量 = pair合约的铸造方法铸造给`to地址`的返回值
         liquidity = IUniswapV2Pair(pair).mint(to);
-        //如果`收到的主币数量`>`ETH数量` 则返还`收到的主币数量`-`ETH数量`
+        //如果`收到的主币数量`>`TKM数量` 则返还`收到的主币数量`-`TKM数量`
         if (msg.value > amountETH)
             TransferHelper.safeTransferETH(msg.sender, msg.value - amountETH); // refund dust eth, if any
     }
@@ -918,15 +918,15 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     }
 
     /**
-     * @dev 移除ETH流动性
+     * @dev 移除TKM流动性
      * @param token token地址
      * @param liquidity 流动性数量
      * @param amountTokenMin token最小数量
-     * @param amountETHMin ETH最小数量
+     * @param amountTKMMin TKM最小数量
      * @param to to地址
      * @param deadline 最后期限
      * @return amountToken   token数量
-     * @return amountETH   ETH数量
+     * @return amountTKM   TKM数量
      */
     function removeLiquidityETH(
         address token,
@@ -936,7 +936,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         address to,
         uint256 deadline
     ) public ensure(deadline) returns (uint256 amountToken, uint256 amountETH) {
-        //(token数量,ETH数量) = 移除流动性(token地址,WETH地址,流动性数量,token最小数量,ETH最小数量,当前合约地址,最后期限)
+        //(token数量,TKM数量) = 移除流动性(token地址,WTKM地址,流动性数量,token最小数量,TKM最小数量,当前合约地址,最后期限)
         (amountToken, amountETH) = removeLiquidity(
             token,
             WETH,
@@ -948,9 +948,9 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         );
         //将token数量的token发送到to地址
         TransferHelper.safeTransfer(token, to, amountToken);
-        //从WETH取款ETH数量
+        //从WTKM取款TKM数量
         IWETH(WETH).withdraw(amountETH);
-        //将ETH数量的ETH发送到to地址
+        //将TKM数量的TKM发送到to地址
         TransferHelper.safeTransferETH(to, amountETH);
     }
 
@@ -1010,11 +1010,11 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     }
 
     /**
-     * @dev 带签名移除ETH流动性
+     * @dev 带签名移除TKM流动性
      * @param token token地址
      * @param liquidity 流动性数量
      * @param amountTokenMin token最小数量
-     * @param amountETHMin ETH最小数量
+     * @param amountTKMMin TKM最小数量
      * @param to to地址
      * @param deadline 最后期限
      * @param approveMax 全部批准
@@ -1022,7 +1022,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
      * @param r r
      * @param s s
      * @return amountToken   token数量
-     * @return amountETH   ETH数量
+     * @return amountTKM   TKM数量
      */
     function removeLiquidityETHWithPermit(
         address token,
@@ -1036,7 +1036,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         bytes32 r,
         bytes32 s
     ) external returns (uint256 amountToken, uint256 amountETH) {
-        //计算Token,WETH的CREATE2地址，而无需进行任何外部调用
+        //计算Token,WTKM的CREATE2地址，而无需进行任何外部调用
         address pair = UniswapV2Library.pairFor(factory, token, WETH);
         //如果全部批准,value值等于最大uint256,否则等于流动性
         uint256 value = approveMax ? uint256(-1) : liquidity;
@@ -1050,7 +1050,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
             r,
             s
         );
-        //(token数量,ETH数量) = 移除ETH流动性(token地址,流动性数量,token最小数量,ETH最小数量,to地址,最后期限)
+        //(token数量,TKM数量) = 移除TKM流动性(token地址,流动性数量,token最小数量,TKM最小数量,to地址,最后期限)
         (amountToken, amountETH) = removeLiquidityETH(
             token,
             liquidity,
@@ -1166,7 +1166,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     }
 
     /**
-     * @dev 根据精确的ETH交换尽量多的token
+     * @dev 根据精确的TKM交换尽量多的token
      * @param amountOutMin 最小输出数额
      * @param path 路径数组
      * @param to to地址
@@ -1179,7 +1179,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         address to,
         uint256 deadline
     ) external payable ensure(deadline) returns (uint256[] memory amounts) {
-        //确认路径第一个地址为WETH
+        //确认路径第一个地址为WTKM
         require(path[0] == WETH, "UniswapV2Router: INVALID_PATH");
         //数额数组 ≈ 遍历路径数组((精确输入数额 * 储备量Out) / (储备量In * 1000 + msg.value))
         amounts = UniswapV2Library.getAmountsOut(factory, msg.value, path);
@@ -1188,9 +1188,9 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
             amounts[amounts.length - 1] >= amountOutMin,
             "UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT"
         );
-        //将数额数组[0]的数额存款ETH到WETH合约
+        //将数额数组[0]的数额存款TKM到WTKM合约
         IWETH(WETH).deposit.value(amounts[0])();
-        //断言将数额数组[0]的数额的WETH发送到路径(0,1)的pair合约地址
+        //断言将数额数组[0]的数额的WTKM发送到路径(0,1)的pair合约地址
         assert(
             IWETH(WETH).transfer(
                 UniswapV2Library.pairFor(factory, path[0], path[1]),
@@ -1202,7 +1202,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     }
 
     /**
-     * @dev 使用尽量少的token交换精确的ETH
+     * @dev 使用尽量少的token交换精确的TKM
      * @param amountOut 精确输出数额
      * @param amountInMax 最大输入数额
      * @param path 路径数组
@@ -1217,7 +1217,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         address to,
         uint256 deadline
     ) external ensure(deadline) returns (uint256[] memory amounts) {
-        //确认路径最后一个地址为WETH
+        //确认路径最后一个地址为WTKM
         require(path[path.length - 1] == WETH, "UniswapV2Router: INVALID_PATH");
         //数额数组 ≈ 遍历路径数组((储备量In * 储备量Out * 1000) / (储备量Out - 输出数额 * 997) + 1)
         amounts = UniswapV2Library.getAmountsIn(factory, amountOut, path);
@@ -1235,14 +1235,14 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         );
         //私有交换(数额数组,路径数组,当前合约地址)
         _swap(amounts, path, address(this));
-        //从WETH合约提款数额数组最后一个数值的ETH
+        //从WTKM合约提款数额数组最后一个数值的TKM
         IWETH(WETH).withdraw(amounts[amounts.length - 1]);
-        //将数额数组最后一个数值的ETH发送到to地址
+        //将数额数组最后一个数值的TKM发送到to地址
         TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
     /**
-     * @dev 根据精确的token交换尽量多的ETH
+     * @dev 根据精确的token交换尽量多的TKM
      * @param amountIn 精确输入数额
      * @param amountOutMin 最小输出数额
      * @param path 路径数组
@@ -1257,7 +1257,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         address to,
         uint256 deadline
     ) external ensure(deadline) returns (uint256[] memory amounts) {
-        //确认路径最后一个地址为WETH
+        //确认路径最后一个地址为WTKM
         require(path[path.length - 1] == WETH, "UniswapV2Router: INVALID_PATH");
         //数额数组 ≈ 遍历路径数组((精确输入数额 * 储备量Out) / (储备量In * 1000 + 输入数额))
         amounts = UniswapV2Library.getAmountsOut(factory, amountIn, path);
@@ -1275,14 +1275,14 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         );
         //私有交换(数额数组,路径数组,当前合约地址)
         _swap(amounts, path, address(this));
-        //从WETH合约提款数额数组最后一个数值的ETH
+        //从WTKM合约提款数额数组最后一个数值的TKM
         IWETH(WETH).withdraw(amounts[amounts.length - 1]);
-        //将数额数组最后一个数值的ETH发送到to地址
+        //将数额数组最后一个数值的TKM发送到to地址
         TransferHelper.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
     /**
-     * @dev 使用尽量少的ETH交换精确的token
+     * @dev 使用尽量少的TKM交换精确的token
      * @param amountOut 精确输出数额
      * @param path 路径数组
      * @param to to地址
@@ -1295,7 +1295,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         address to,
         uint256 deadline
     ) external payable ensure(deadline) returns (uint256[] memory amounts) {
-        //确认路径第一个地址为WETH
+        //确认路径第一个地址为WTKM
         require(path[0] == WETH, "UniswapV2Router: INVALID_PATH");
         //数额数组 ≈ 遍历路径数组((储备量In * 储备量Out * 1000) / (储备量Out - 输出数额 * 997) + 1)
         amounts = UniswapV2Library.getAmountsIn(factory, amountOut, path);
@@ -1304,9 +1304,9 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
             amounts[0] <= msg.value,
             "UniswapV2Router: EXCESSIVE_INPUT_AMOUNT"
         );
-        //将数额数组[0]的数额存款ETH到WETH合约
+        //将数额数组[0]的数额存款TKM到WTKM合约
         IWETH(WETH).deposit.value(amounts[0])();
-        //断言将数额数组[0]的数额的WETH发送到路径(0,1)的pair合约地址
+        //断言将数额数组[0]的数额的WTKM发送到路径(0,1)的pair合约地址
         assert(
             IWETH(WETH).transfer(
                 UniswapV2Library.pairFor(factory, path[0], path[1]),

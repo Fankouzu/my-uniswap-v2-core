@@ -22,6 +22,9 @@
     "node": ">=10"
   },
   "devDependencies": {
+    "@nomiclabs/buidler": "^1.4.3",
+    "@nomiclabs/buidler-ethers": "^2.0.0",
+    "@nomiclabs/buidler-waffle": "^2.0.0",
     "@openzeppelin/contracts": "^2.5.0",
     "@truffle/debug-utils": "^4.1.6",
     "@types/chai": "^4.2.6",
@@ -30,9 +33,10 @@
     "chai": "^4.2.0",
     "colors": "^1.4.0",
     "ethereum-hdwallet": "0.0.26",
-    "ethereum-waffle": "^2.4.1",
+    "ethereum-waffle": "^3.0.2",
     "ethereumjs-tx": "^2.1.2",
     "ethereumjs-util": "^7.0.2",
+    "ethers": "^5.0.8",
     "ganache-cli": "^6.9.1",
     "inquirer": "^7.2.0",
     "mocha": "^6.2.2",
