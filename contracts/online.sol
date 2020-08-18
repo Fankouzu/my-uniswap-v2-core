@@ -1113,7 +1113,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
         address to,
         uint256 deadline
     ) external ensure(deadline) returns (uint256[] memory amounts) {
-        //数额数组 ≈ 遍历路径数组((精确输入数额 * 储备量Out) / (储备量In * 1000 + 输入数额))
+        //数额数组 ≈ 遍历路径数组((输入数额 * 997 * 储备量Out) / (储备量In * 1000 + 输入数额 * 997))
         amounts = UniswapV2Library.getAmountsOut(factory, amountIn, path);
         //确认数额数组最后一个元素>=最小输出数额
         require(
@@ -1181,7 +1181,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     ) external payable ensure(deadline) returns (uint256[] memory amounts) {
         //确认路径第一个地址为WETH
         require(path[0] == WETH, "UniswapV2Router: INVALID_PATH");
-        //数额数组 ≈ 遍历路径数组((精确输入数额 * 储备量Out) / (储备量In * 1000 + msg.value))
+        //数额数组 ≈ 遍历路径数组((msg.value * 997 * 储备量Out) / (储备量In * 1000 + msg.value * 997))
         amounts = UniswapV2Library.getAmountsOut(factory, msg.value, path);
         //确认数额数组最后一个元素>=最小输出数额
         require(
@@ -1259,7 +1259,7 @@ contract UniswapV2Router01 is IUniswapV2Router01 {
     ) external ensure(deadline) returns (uint256[] memory amounts) {
         //确认路径最后一个地址为WETH
         require(path[path.length - 1] == WETH, "UniswapV2Router: INVALID_PATH");
-        //数额数组 ≈ 遍历路径数组((精确输入数额 * 储备量Out) / (储备量In * 1000 + 输入数额))
+        //数额数组 ≈ 遍历路径数组((输入数额 * 997 * 储备量Out) / (储备量In * 1000 + 输入数额 * 997))
         amounts = UniswapV2Library.getAmountsOut(factory, amountIn, path);
         //确认数额数组最后一个元素>=最小输出数额
         require(
