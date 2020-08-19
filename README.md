@@ -51,5 +51,5 @@
 4. 在每个网络部署路由合约,指定工厂合约地址和weth合约地址
 5. 克隆uniswap前端,修改路由合约地址,修改环境变量
 6. 创建新的github仓库
-7. 安装gh-pages
+7. 安装gh-pages,yarn add gh-pages
 8. yarn build && yarn deploy
