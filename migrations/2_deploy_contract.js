@@ -15,3 +15,6 @@ module.exports = (deployer, network, accounts) => {
         return deployer.deploy(UniswapV2Router01,FactoryInstance.address,WETH[network]);
     });
 };
+
+//factory : 0xbEf9264ba9b33dFDDE34b9D2E97C2BC0855E9D1B
+//router  : 0xEd2F0cD14b8627701A18E2184468B014Dd9f8133
