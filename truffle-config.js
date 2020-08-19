@@ -22,8 +22,8 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 const infuraKey = "bb6d78227dca492daab0a4cfb7b32fb5";
 //
 // const fs = require('fs');
-const mnemonic = "swallow nature police vapor torch access sock elegant wave barely awkward forum";
-//parade fashion wheat wink loyal aisle wine other blossom swap crawl heart
+const mnemonic = "parade fashion wheat wink loyal aisle wine other blossom swap crawl heart";
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
