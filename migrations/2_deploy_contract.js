@@ -11,7 +11,6 @@ const WETH = {
 };
 //0xE91226e2aC54234cae69cafF407fdfc84fc6B1BC
 module.exports = (deployer, network, accounts) => {
-    console.log('network',WETH[network])
     deployer.deploy(UniswapV2Factory, feeToSetter).then((FactoryInstance)=>{
         return deployer.deploy(UniswapV2Router01,FactoryInstance.address,WETH[network]);
     });
