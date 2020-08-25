@@ -32,8 +32,8 @@ D-->|调用|C
 > 如果你对合约代码并不熟悉,也可以跳过上面这部分,接下来我们将从以太坊浏览器中直接拷贝线上版合约源码
 
 - [工厂合约](https://cn.etherscan.com/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f#code)
-
-- [路由合约](https://cn.etherscan.com/address/0x7a250d5630b4cf539739df2c5dacb4c659f2488d#code)
+## 从代码库中拷贝路由合约
+- [路由合约](https://github.com/Fankouzu/my-uniswap-v2-core/blob/master/contracts/online.sol)
 
 # 部署合约
 
