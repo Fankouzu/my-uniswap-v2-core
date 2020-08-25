@@ -232,7 +232,7 @@ module.exports = (deployer, network, accounts) => {
 > 在项目目录运行命令:
 ```
 $ truffle migrate -f 2 --network mainnet
-$ truffle migrate -f 2 --network repsten
+$ truffle migrate -f 2 --network ropsten
 $ truffle migrate -f 2 --network rinkeby
 $ truffle migrate -f 2 --network goerli
 $ truffle migrate -f 2 --network kovan
