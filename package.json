@@ -21,31 +21,24 @@
   "engines": {
     "node": ">=10"
   },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.0.42",
+    "@uniswap/lib": "1.1.1",
+    "@uniswap/v2-core": "1.0.0"
+  },
   "devDependencies": {
-    "@nomiclabs/buidler": "^1.4.3",
-    "@nomiclabs/buidler-ethers": "^2.0.0",
-    "@nomiclabs/buidler-waffle": "^2.0.0",
-    "@openzeppelin/contracts": "^2.5.0",
-    "@truffle/debug-utils": "^4.1.6",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
-    "bip39": "^3.0.2",
     "chai": "^4.2.0",
-    "colors": "^1.4.0",
-    "ethereum-hdwallet": "0.0.26",
-    "ethereum-waffle": "^3.0.2",
-    "ethereumjs-tx": "^2.1.2",
-    "ethereumjs-util": "^7.0.2",
-    "ethers": "^5.0.8",
-    "ganache-cli": "^6.9.1",
-    "inquirer": "^7.2.0",
+    "ethereum-waffle": "^2.4.1",
+    "ethereumjs-util": "^6.2.0",
     "mocha": "^6.2.2",
+    "ncp": "^2.0.0",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "thinkium-web3js": "^1.0.8",
+    "solc": "^0.5.16",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.3",
-    "web3": "^1.2.11"
+    "typescript": "^3.7.3"
   },
   "scripts": {
     "lint": "yarn prettier ./test/*.ts --check",
@@ -57,11 +50,5 @@
     "test": "mocha",
     "prepublishOnly": "yarn test"
   },
-  "license": "GPL-3.0-or-later",
-  "dependencies": {
-    "@truffle/hdwallet-provider": "^1.0.42",
-    "@uniswap/lib": "1.1.1",
-    "@uniswap/v2-core": "1.0.0",
-    "solc": "^0.5.16"
-  }
+  "license": "GPL-3.0-or-later"
 }
