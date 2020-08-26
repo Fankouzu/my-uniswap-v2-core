@@ -43,14 +43,6 @@
 
 # Cuiswap Interface
 
-## 创建交易所步骤
+## 部署和创建交易所步骤
 
-1. 创建新的私钥钱包
-2. 为新账户地址充值
-3. 在每个网络部署工厂合约,指定feeToSetter为常用账户
-4. 在每个网络部署路由合约,指定工厂合约地址和weth合约地址
-5. 部署ERC20合约
-6. 克隆uniswap前端,修改路由合约地址,修改环境变量
-7. 创建新的github仓库
-8. 安装gh-pages,yarn add gh-pages
-9. yarn build && yarn deploy
+- [部署Uniswap交易所](./deploy.md)
