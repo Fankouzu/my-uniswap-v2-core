@@ -45,4 +45,4 @@
 
 ## 部署和创建交易所步骤
 
-- [部署Uniswap交易所](./deploy.md)
+- [部署Uniswap交易所](./Deploy.md)
