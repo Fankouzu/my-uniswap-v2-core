@@ -11,6 +11,8 @@ contract UniswapV2Factory is IUniswapV2Factory {
     mapping(address => mapping(address => address)) public getPair;
     //所有配对数组
     address[] public allPairs;
+    //配对合约的Bytecode的hash
+    bytes32 public constant INIT_CODE_PAIR_HASH = keccak256(abi.encodePacked(type(UniswapV2Pair).creationCode));
     //事件:配对被创建
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
