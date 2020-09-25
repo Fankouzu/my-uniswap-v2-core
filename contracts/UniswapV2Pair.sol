@@ -22,7 +22,7 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
     address public factory; //工厂地址
     address public token0; //token0地址/
     address public token1; //token1地址
-
+ 
     uint112 private reserve0; // 储备量0
     uint112 private reserve1; // 储备量1
     uint32 private blockTimestampLast; // 更新储备量的最后时间戳
@@ -134,6 +134,7 @@ contract UniswapV2Pair is IUniswapV2Pair, UniswapV2ERC20 {
         //调用token合约地址的低级transfer方法
         //solium-disable-next-line
         (bool success, bytes memory data) = token.call(
+            //计算函数选择器和参数的ABI编码
             abi.encodeWithSelector(SELECTOR, to, value)
         );
         //确认返回值为true并且返回的data长度为0或者解码后为true
